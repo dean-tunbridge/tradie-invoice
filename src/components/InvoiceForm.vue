@@ -1,7 +1,62 @@
 <template>
-  <div></div>
+  <form class="invoice-form">
+    <h1>Create Invoice</h1>
+  </form>
+
+  <section>
+    <h2>Invoice Totals</h2>
+    <p>Subtotal: {{ invoiceTotals.subtotalCents }} cents</p>
+
+    <p>Discount: {{ invoiceTotals.discountCents }} cents</p>
+
+    <p>GST: {{ invoiceTotals.gstCents }} cents</p>
+
+    <p>Total: {{ invoiceTotals.totalCents }} cents</p>
+  </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import type { Invoice } from '../types/invoice'
+import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
+
+const invoiceNumber = ref('')
+
+// Create initial state for all values //
+const invoice = ref<Invoice>({
+  business: {
+    businessName: '',
+    address: '',
+    email: '',
+    phone: '',
+    nzbn: '',
+    gstRegistered: false,
+    gstNumber: '',
+  },
+
+  customer: {
+    customerName: '',
+    address: '',
+    email: '',
+    phone: '',
+  },
+
+  invoiceNumber: '',
+  invoiceDate: '',
+  dueDate: '',
+
+  items: [],
+
+  discountPercentage: 0,
+})
+
+const invoiceTotals = computed(() => {
+  return calculateInvoiceAmounts(
+    invoice.value.items,
+    invoice.value.discountPercentage,
+    invoice.value.business.gstRegistered,
+  )
+})
+</script>
 
 <style scoped></style>
