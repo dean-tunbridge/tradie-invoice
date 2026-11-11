@@ -59,3 +59,19 @@ describe('Discount calculations', () => {
     expect(calculateTaxAfterDiscount(73400, 7340)).toBe(66060)
   })
 })
+
+// TEST GST CALCULATIONS //
+describe('GST calculations', () => {
+  // TEST CALCULATE GST //
+  it('calculates GST at 15%', () => {
+    expect(calculateGST(66060, true)).toBe(9909)
+  })
+  // TEST NOT CALCULATING FOR UNREGISTERED BUSINESS' //
+  it('does not calculate GST for non-registered businesses', () => {
+    expect(calculateGST(66060, false)).toBe(0)
+  })
+  // TEST DIFFERENT GST RATE
+  it('allows a different GST rate', () => {
+    expect(calculateGST(66060, true, 10)).toBe(6606)
+  })
+})
