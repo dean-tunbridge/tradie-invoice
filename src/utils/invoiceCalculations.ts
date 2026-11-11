@@ -50,3 +50,33 @@ export function calculateGST(
 
   return Math.round(taxableAmountCents * (gstRate / 100))
 }
+
+// CALCULATE INVOICE AMOUNTS //
+export function calculateInvoiceAmounts(
+  items: InvoiceItem[],
+  discountPercentage: number,
+  gstRegistered: boolean,
+  gstRate: number = 15,
+) {
+  // Calculate subtotal in cents
+  const subtotalCents = calculateTotalCents(items)
+  // Calculate discount
+  const discountCents = calculateDiscount(subtotalCents, discountPercentage)
+  // Calculate taxable amount //
+  const taxableAmountCents = calculateTaxAfterDiscount(
+    subtotalCents,
+    discountCents,
+  )
+  // Calculate GST in cents
+  const gstCents = calculateGST(taxableAmountCents, gstRegistered, gstRate)
+  // Calculate total in cents
+  const totalCents = taxableAmountCents + gstCents
+
+  return {
+    subtotalCents,
+    discountCents,
+    taxableAmountCents,
+    gstCents,
+    totalCents,
+  }
+}
