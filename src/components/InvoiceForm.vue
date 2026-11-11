@@ -7,7 +7,7 @@
       <BusinessDetails v-model:business="invoice.business" />
 
       <!-- Customer details -->
-
+      <CustomerDetails v-model:customer="invoice.customer" />
       <!-- Invoice line items -->
 
       <!-- Invoice totals -->
@@ -33,6 +33,7 @@ import { ref, computed } from 'vue'
 import type { Invoice } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import BusinessDetails from './BusinessDetails.vue'
+import CustomerDetails from './CustomerDetails.vue'
 
 const invoiceNumber = ref('')
 
