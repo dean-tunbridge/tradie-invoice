@@ -33,7 +33,7 @@ export function calculateDiscount(
 }
 
 // CALCULATE TAX AFTER DISCOUNT //
-export function calculateTAxAfterDiscount(
+export function calculateTaxAfterDiscount(
   subtotalCents: number,
   discountCents: number,
 ): number {
