@@ -18,3 +18,5 @@ describe('Invoice calculations', () => {
     })
   })
 })
+
+// TEST DOLLAR CONVERTER //
