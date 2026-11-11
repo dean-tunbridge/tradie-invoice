@@ -10,8 +10,14 @@ export function convertToDollars(cents: number) {
   return cents / 100
 }
 
-export function calculateTotalCents(item: InvoiceItem) {
+export function calculateLineTotalCents(item: InvoiceItem) {
   const unitPriceCents = convertToCents(item.unitPrice)
 
   return Math.round(item.quantity * unitPriceCents)
+}
+
+export function calculateTotalCents(items: InvoiceItem[]) {
+  return items.reduce((curr, acc) => {
+    return curr + calculateLineTotalCents(acc)
+  }, 0)
 }
