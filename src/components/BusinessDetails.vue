@@ -3,6 +3,7 @@
     <section class="business-details">
       <h2>Business Details</h2>
 
+      <!-- business name -->
       <label>
         Business Name
         <input
@@ -16,6 +17,7 @@
           " />
       </label>
 
+      <!-- business address -->
       <label>
         Business Address
         <input
@@ -26,6 +28,7 @@
           " />
       </label>
 
+      <!-- email -->
       <label>
         Email
         <input
@@ -35,6 +38,7 @@
             updateBusiness('email', ($event.target as HTMLInputElement).value)
           " />
 
+        <!-- phone number -->
         <label>
           Phone
           <input
