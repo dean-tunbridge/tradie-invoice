@@ -35,3 +35,15 @@ describe('Line item calculations', () => {
     expect(calculateLineTotalCents(item)).toBe(2500)
   })
 })
+
+// TEST SUBTOTAL CALCULATION //
+describe('Subtotal calculations', () => {
+  it('Calculates total of multiple items', () => {
+    let items = [
+      { description: 'labour', quantity: 8, unitPrice: 85.5 },
+      { description: 'sundries', quantity: 2, unitPrice: 25 },
+    ]
+
+    expect(calculateTotalCents(items)).toBe(73400)
+  })
+})
