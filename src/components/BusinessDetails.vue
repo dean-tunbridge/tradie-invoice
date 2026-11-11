@@ -25,6 +25,26 @@
             updateBusiness('address', ($event.target as HTMLInputElement).value)
           " />
       </label>
+
+      <label>
+        Email
+        <input
+          type="email"
+          :value="business.email"
+          @input="
+            updateBusiness('email', ($event.target as HTMLInputElement).value)
+          " />
+
+        <label>
+          Phone
+          <input
+            type="tel"
+            :value="business.phone"
+            @input="
+              updateBusiness('phone', ($event.target as HTMLInputElement).value)
+            " />
+        </label>
+      </label>
     </section>
   </div>
 </template>
