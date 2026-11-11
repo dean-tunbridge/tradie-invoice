@@ -104,10 +104,16 @@ const emit = defineEmits<{
 }>()
 
 function updateBusiness(field: keyof Business, value: string | boolean) {
-  emit('update:business', {
+  const updatedBusiness = {
     ...props.business,
     [field]: value,
-  })
+  }
+  // Ensure gst number is removed when field is unticked //
+  if (field === 'gstRegistered' && value === 'false') {
+    updatedBusiness.gstNumber = ''
+  }
+
+  emit('update:business', updatedBusiness)
 }
 </script>
 
