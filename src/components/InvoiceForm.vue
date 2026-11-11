@@ -5,11 +5,10 @@
 
       <!-- Business details component -->
       <BusinessDetails v-model:business="invoice.business" />
-
       <!-- Customer details -->
       <CustomerDetails v-model:customer="invoice.customer" />
       <!-- Invoice line items -->
-
+      <InvoiceLineItems v-model:items="invoice.items" />
       <!-- Invoice totals -->
 
       <!-- Invoice actions -->
@@ -34,6 +33,7 @@ import type { Invoice } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
+import InvoiceLineItems from './InvoiceLineItems.vue'
 
 const invoiceNumber = ref('')
 
