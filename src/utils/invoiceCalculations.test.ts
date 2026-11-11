@@ -10,13 +10,28 @@ import {
   calculateGST,
 } from './invoiceCalculations'
 
-// TEST CENT CONVERTER //
+// TEST CURRENCY CONVERSIONS //
 describe('Invoice calculations', () => {
   describe('Currency conversion', () => {
+    // TEST CENT CONVERTER //
     it('Converts dollar values into cents', () => {
       expect(convertToCents(11.73)).toBe(1173)
+    })
+    // TEST DOLLAR CONVERTER //
+    it('Converts cent values into dollars', () => {
+      expect(convertToDollars(1173)).toBe(11.73)
     })
   })
 })
 
-// TEST DOLLAR CONVERTER //
+// TEST LINE ITEM CALCULATIONS //
+describe('Line item calculations', () => {
+  it('Calculates line item totals correctly', () => {
+    let item = {
+      description: 'sundries',
+      quantity: 1,
+      unitPrice: 25,
+    }
+    expect(calculateLineTotalCents(item)).toBe(2500)
+  })
+})
