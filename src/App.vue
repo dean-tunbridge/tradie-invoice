@@ -1,3 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import InvoiceForm from './components/InvoiceForm.vue'
+</script>
 
-<template></template>
+<template>
+  <main>
+    <InvoiceForm />
+  </main>
+</template>
