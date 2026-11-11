@@ -17,7 +17,7 @@ export function calculateLineTotalCents(item: InvoiceItem) {
   return Math.round(item.quantity * unitPriceCents)
 }
 
-// CENTS TOTAL //
+// CALCULATE TOTAL //
 export function calculateTotalCents(items: InvoiceItem[]) {
   return items.reduce((curr, acc) => {
     return curr + calculateLineTotalCents(acc)
@@ -38,4 +38,15 @@ export function calculateTAxAfterDiscount(
   discountCents: number,
 ): number {
   return subtotalCents - discountCents
+}
+
+// CALCULATE GST //
+export function calculateGST(
+  taxableAmountCents: number,
+  gstRegistered: boolean,
+  gstRate: number = 15,
+): number {
+  if (!gstRegistered) return 0
+
+  return Math.round(taxableAmountCents * (gstRate / 100))
 }
