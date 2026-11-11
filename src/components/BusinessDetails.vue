@@ -15,6 +15,16 @@
             )
           " />
       </label>
+
+      <label>
+        Business Address
+        <input
+          type="text"
+          :value="business.address"
+          @input="
+            updateBusiness('address', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
     </section>
   </div>
 </template>
