@@ -8,6 +8,7 @@ import {
   calculateDiscount,
   calculateTaxAfterDiscount,
   calculateGST,
+  calculateInvoiceAmounts,
 } from './invoiceCalculations'
 
 // TEST CURRENCY CONVERSIONS //
@@ -103,5 +104,26 @@ describe('Calculation edge cases', () => {
   // RETURN VALUE FROM EMPTY ARRAY //
   it('returns zero subtotal for an empty item array', () => {
     expect(calculateTotalCents([])).toBe(0)
+  })
+})
+
+// TEST COMPLETE INVOICE //
+describe('Complete invoice calculations', () => {
+  // CALCULATE INVOICE TOTAL
+  it('calculates the complete invoice correctly', () => {
+    const items = [
+      { description: 'labour', quantity: 8, unitPrice: 85.5 },
+      { description: 'sundries', quantity: 3, unitPrice: 25 },
+    ]
+
+    const result = calculateInvoiceAmounts(items, 10, true)
+
+    expect(result).toEqual({
+      subtotalCents: 75900,
+      discountCents: 7590,
+      taxableAmountCents: 68310,
+      gstCents: 10247,
+      totalCents: 78557,
+    })
   })
 })
