@@ -1,5 +1,65 @@
 <template>
-  <div></div>
+  <div>
+    <section class="line-items">
+      <h2>Hours and Materials</h2>
+
+      <div v-for="(item, index) in items" :key="index" class="line-item">
+        <h3>Item: {{ index + 1 }}</h3>
+        <!-- description -->
+        <label>
+          Description
+          <input
+            type="text"
+            :value="item.description"
+            @input="
+              updateItem(
+                index,
+                'description',
+                ($event.target as HTMLInputElement).value,
+              )
+            " />
+        </label>
+
+        <!-- quantity -->
+        <label>
+          Quantity
+          <input
+            type="number"
+            min="0"
+            step="any"
+            :value="item.quantity"
+            @input="
+              updateItem(
+                index,
+                'quantity',
+                Number(($event.target as HTMLInputElement).value),
+              )
+            " />
+        </label>
+
+        <!-- unit price -->
+        <label>
+          Unit Price ($)
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            :value="item.unitPrice"
+            @input="
+              updateItem(
+                index,
+                'unitPrice',
+                Number(($event.target as HTMLInputElement).value),
+              )
+            " />
+        </label>
+
+        <button type="button" @click="removeItem(index)">Remove item</button>
+      </div>
+
+      <button type="button" @click="addItem">Add item</button>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
