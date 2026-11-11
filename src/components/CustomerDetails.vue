@@ -73,4 +73,22 @@ function updateCustomer(field: keyof Customer, value: string) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.customer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.customer-details label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.customer-details input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+</style>
