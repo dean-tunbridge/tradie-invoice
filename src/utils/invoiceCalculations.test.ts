@@ -47,3 +47,15 @@ describe('Subtotal calculations', () => {
     expect(calculateTotalCents(items)).toBe(73400)
   })
 })
+
+// TEST DISCOUNTS //
+describe('Discount calculations', () => {
+  // TEST PERCENTAGE //
+  it('calculates a percentage discount', () => {
+    expect(calculateDiscount(73400, 10)).toBe(7340)
+  })
+  // TEST AMOUNT AFTER DISCOUNT
+  it('calculates the taxable amount after discount', () => {
+    expect(calculateTaxAfterDiscount(73400, 7340)).toBe(66060)
+  })
+})
