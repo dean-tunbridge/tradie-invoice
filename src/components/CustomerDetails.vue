@@ -1,5 +1,55 @@
 <template>
-  <div></div>
+  <div>
+    <section class="customer-details">
+      <h2>Customer Details</h2>
+      <!-- customer name -->
+      <label>
+        Customer Name
+        <input
+          type="text"
+          :value="customer.customerName"
+          @input="
+            updateCustomer(
+              'customerName',
+              ($event.target as HTMLInputElement).value,
+            )
+          " />
+      </label>
+
+      <!-- customer address -->
+      <label>
+        Customer Address
+        <input
+          type="text"
+          :value="customer.address"
+          @input="
+            updateCustomer('address', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
+
+      <!-- customer email -->
+      <label>
+        Email
+        <input
+          type="email"
+          :value="customer.email"
+          @input="
+            updateCustomer('email', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
+
+      <!-- customer phone number -->
+      <label>
+        Phone
+        <input
+          type="tel"
+          :value="customer.phone"
+          @input="
+            updateCustomer('phone', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
