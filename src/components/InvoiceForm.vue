@@ -1,18 +1,20 @@
 <template>
-  <form class="invoice-form">
-    <h1>Create Invoice</h1>
-  </form>
+  <div>
+    <form class="invoice-form">
+      <h1>Create Invoice</h1>
+    </form>
 
-  <section>
-    <h2>Invoice Totals</h2>
-    <p>Subtotal: {{ invoiceTotals.subtotalCents }} cents</p>
+    <section>
+      <h2>Invoice Totals</h2>
+      <p>Subtotal: {{ invoiceTotals.subtotalCents }} cents</p>
 
-    <p>Discount: {{ invoiceTotals.discountCents }} cents</p>
+      <p>Discount: {{ invoiceTotals.discountCents }} cents</p>
 
-    <p>GST: {{ invoiceTotals.gstCents }} cents</p>
+      <p>GST: {{ invoiceTotals.gstCents }} cents</p>
 
-    <p>Total: {{ invoiceTotals.totalCents }} cents</p>
-  </section>
+      <p>Total: {{ invoiceTotals.totalCents }} cents</p>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">

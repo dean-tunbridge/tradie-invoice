@@ -1,5 +1,22 @@
 <template>
-  <div></div>
+  <div>
+    <section class="business-details">
+      <h2>Business Details</h2>
+
+      <label>
+        Business Name
+        <input
+          type="text"
+          :value="business.businessName"
+          @input="
+            updateBusiness(
+              'businessName',
+              ($event.target as HTMLInputElement).value,
+            )
+          " />
+      </label>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
