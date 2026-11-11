@@ -5,6 +5,14 @@
 
       <!-- Business details component -->
       <BusinessDetails v-model:business="invoice.business" />
+
+      <!-- Customer details -->
+
+      <!-- Invoice line items -->
+
+      <!-- Invoice totals -->
+
+      <!-- Invoice actions -->
     </form>
 
     <section>
