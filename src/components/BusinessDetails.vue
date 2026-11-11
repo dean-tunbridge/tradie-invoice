@@ -37,17 +37,55 @@
           @input="
             updateBusiness('email', ($event.target as HTMLInputElement).value)
           " />
+      </label>
+      <!-- phone number -->
+      <label>
+        Phone
+        <input
+          type="tel"
+          :value="business.phone"
+          @input="
+            updateBusiness('phone', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
 
-        <!-- phone number -->
-        <label>
-          Phone
-          <input
-            type="tel"
-            :value="business.phone"
-            @input="
-              updateBusiness('phone', ($event.target as HTMLInputElement).value)
-            " />
-        </label>
+      <!-- New Zealand business number -->
+      <label>
+        NZBN
+        <input
+          type="text"
+          :value="business.nzbn"
+          @input="
+            updateBusiness('nzbn', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
+
+      <!-- gst  -->
+      <label>
+        <input
+          type="checkbox"
+          :checked="business.gstRegistered"
+          @change="
+            updateBusiness(
+              'gstRegistered',
+              ($event.target as HTMLInputElement).checked,
+            )
+          " />
+        GST registered
+      </label>
+
+      <!-- check gst registered -->
+      <label v-if="business.gstRegistered">
+        GST number
+        <input
+          type="text"
+          :value="business.gstNumber"
+          @input="
+            updateBusiness(
+              'gstNumber',
+              ($event.target as HTMLInputElement).value,
+            )
+          " />
       </label>
     </section>
   </div>
