@@ -75,3 +75,33 @@ describe('GST calculations', () => {
     expect(calculateGST(66060, true, 10)).toBe(6606)
   })
 })
+
+// TEST EDGE CASES //
+describe('Calculation edge cases', () => {
+  // TEST ZERO VALUE ITEM //
+  it('allows zero-value items', () => {
+    const item = {
+      description: 'Warranty work',
+      quantity: 1,
+      unitPrice: 0,
+    }
+
+    expect(calculateLineTotalCents(item)).toBe(0)
+  })
+  // TEST 0% DISCOUNT //
+  it('handles a zero percent discount', () => {
+    expect(calculateDiscount(20000, 0)).toBe(0)
+  })
+  // TEST 100% DISCOUNT //
+  it('handles a 100 percent discount', () => {
+    expect(calculateDiscount(20000, 100)).toBe(20000)
+  })
+  // TEST ROUNDING //
+  it('rounds GST to the nearest cent', () => {
+    expect(calculateGST(1001, true)).toBe(150)
+  })
+  // RETURN VALUE FROM EMPTY ARRAY //
+  it('returns zero subtotal for an empty item array', () => {
+    expect(calculateTotalCents([])).toBe(0)
+  })
+})
