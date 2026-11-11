@@ -2,6 +2,9 @@
   <div>
     <form class="invoice-form">
       <h1>Create Invoice</h1>
+
+      <!-- Business details component -->
+      <BusinessDetails v-model:business="invoice.business" />
     </form>
 
     <section>
@@ -21,6 +24,7 @@
 import { ref, computed } from 'vue'
 import type { Invoice } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
+import BusinessDetails from './BusinessDetails.vue'
 
 const invoiceNumber = ref('')
 
