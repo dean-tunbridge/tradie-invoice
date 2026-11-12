@@ -11,7 +11,7 @@ export const businessSchema = z
     gstRegistered: z.boolean(),
     gstNumber: z.string().optional(),
   })
-  // gst error handling //
+  // gst validation handling //
   .superRefine((business, ctx) => {
     if (business.gstRegistered && !business.gstNumber?.trim()) {
       ctx.addIssue({
@@ -25,7 +25,7 @@ export const businessSchema = z
 
 // CUSTOMER SCHEMA //
 export const customerSchema = z.object({
-  customerName: z.string().min(1, 'Customer name is required'),
+  customerName: z.string().trim().min(1, 'Customer name is required'),
   address: z.string().min(1, 'Customer address is required'),
   email: z.email().optional(),
   phone: z.string().optional(),
