@@ -39,18 +39,30 @@ export const invoiceItemSchema = z.object({
 })
 
 // INVOICE SCHEMA //
-export const invoiceSchema = z.object({
-  business: businessSchema,
-  customer: customerSchema,
-  invoiceNumber: z.string().trim().min(1, 'Invoice number is required'),
-  invoiceDate: z.iso.date('Invoice date is required'),
-  dueDate: z.iso.date('Due date is required'),
-  items: z
-    .array(invoiceItemSchema)
-    .min(1, 'At least one invoice item is required'),
-  discountPercentage: z
-    .number()
-    .min(0, 'Discount must be positive amount')
-    .max(100, 'Discount cannot be over 100%')
-    .default(0),
-})
+export const invoiceSchema = z
+  .object({
+    business: businessSchema,
+    customer: customerSchema,
+    invoiceNumber: z.string().trim().min(1, 'Invoice number is required'),
+    invoiceDate: z.iso.date('Invoice date is required'),
+    dueDate: z.iso.date('Due date is required'),
+    items: z
+      .array(invoiceItemSchema)
+      .min(1, 'At least one invoice item is required'),
+    discountPercentage: z
+      .number()
+      .min(0, 'Discount must be positive amount')
+      .max(100, 'Discount cannot be over 100%')
+      .default(0),
+  })
+  // ensure due date is after the invoice date
+  .superRefine((invoice, ctx) => {
+    if (invoice.dueDate < invoice.invoiceDate) {
+      ctx.addIssue({
+        code: 'custom',
+        // path indicates which field the error belongs to
+        path: ['dueDate'],
+        message: 'Due date cannot be before invoice date',
+      })
+    }
+  })
