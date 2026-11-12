@@ -57,8 +57,6 @@ import InvoiceTotals from './InvoiceTotals.vue'
 import InvoiceDetails from './InvoiceDetails.vue'
 import InvoiceDiscount from './InvoiceDiscount.vue'
 
-const invoiceNumber = ref('')
-
 // Create initial state for all values //
 const invoice = ref<Invoice>({
   business: {
