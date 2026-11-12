@@ -18,6 +18,10 @@
       <!-- Invoice line items -->
       <InvoiceLineItems v-model:items="invoice.items" />
 
+      <!-- discounts-->
+      <InvoiceDiscount
+        v-model:discount-percentage="invoice.discountPercentage" />
+
       <!-- Invoice totals -->
       <InvoiceTotals
         :subtotal-cents="invoiceTotals.subtotalCents"
@@ -51,6 +55,7 @@ import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
 import InvoiceTotals from './InvoiceTotals.vue'
 import InvoiceDetails from './InvoiceDetails.vue'
+import InvoiceDiscount from './InvoiceDiscount.vue'
 
 const invoiceNumber = ref('')
 
