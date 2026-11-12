@@ -5,15 +5,19 @@
 
       <!-- Business details component -->
       <BusinessDetails v-model:business="invoice.business" />
+
       <!-- invoice details -->
       <InvoiceDetails
         v-model:invoice-number="invoice.invoiceNumber"
         v-model:invoice-date="invoice.invoiceDate"
         v-model:due-date="invoice.dueDate" />
+
       <!-- Customer details -->
       <CustomerDetails v-model:customer="invoice.customer" />
+
       <!-- Invoice line items -->
       <InvoiceLineItems v-model:items="invoice.items" />
+
       <!-- Invoice totals -->
       <InvoiceTotals
         :subtotal-cents="invoiceTotals.subtotalCents"
@@ -21,6 +25,7 @@
         :taxable-amount-cents="invoiceTotals.taxableAmountCents"
         :gst-cents="invoiceTotals.gstCents"
         :total-cents="invoiceTotals.totalCents" />
+
       <!-- Invoice actions -->
     </form>
 
