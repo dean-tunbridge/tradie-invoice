@@ -42,7 +42,7 @@ const validInvoice = {
   discountPercentage: 10,
 }
 
-// TEST BUSINESS INFORMATION //
+// TEST BUSINESS SCHEMA //
 describe('Business schema', () => {
   // valid business //
   it('Accepts valid business information', () => {
@@ -58,7 +58,7 @@ describe('Business schema', () => {
     })
     expect(result.success).toBe(false)
   })
-
+  // whitespace only //
   it('rejects whitespace-only business names', () => {
     const result = businessSchema.safeParse({
       ...validBusiness,
@@ -68,7 +68,7 @@ describe('Business schema', () => {
     expect(result.success).toBe(false)
   })
 
-  // email //
+  // empty email address //
   it('accepts an empty email address', () => {
     const result = businessSchema.safeParse({
       ...validBusiness,
@@ -95,5 +95,60 @@ describe('Business schema', () => {
     })
 
     expect(result.success).toBe(true)
+  })
+})
+
+// TEST CUSTOMER SCHEMA //
+describe('Customer schema', () => {
+  // customer information //
+  it('accepts valid customer information', () => {
+    const result = customerSchema.safeParse(validCustomer)
+
+    expect(result.success).toBe(true)
+  })
+  // empty customer name //
+  it('rejects an empty customer name', () => {
+    const result = customerSchema.safeParse({
+      ...validCustomer,
+      customerName: '',
+    })
+
+    expect(result.success).toBe(false)
+  })
+  // whitespace only //
+  it('rejects whitespace-only customer names', () => {
+    const result = customerSchema.safeParse({
+      ...validCustomer,
+      customerName: '   ',
+    })
+
+    expect(result.success).toBe(false)
+  })
+  // empty email address //
+  it('accepts an empty email address', () => {
+    const result = customerSchema.safeParse({
+      ...validCustomer,
+      email: '',
+    })
+
+    expect(result.success).toBe(true)
+  })
+  // invalid email address //
+  it('rejects an invalid email address', () => {
+    const result = customerSchema.safeParse({
+      ...validCustomer,
+      email: 'invalid-email',
+    })
+
+    expect(result.success).toBe(false)
+  })
+  // empty customer address
+  it('rejects an empty customer address', () => {
+    const result = customerSchema.safeParse({
+      ...validCustomer,
+      address: '',
+    })
+
+    expect(result.success).toBe(false)
   })
 })
