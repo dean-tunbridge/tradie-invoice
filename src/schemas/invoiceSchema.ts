@@ -33,7 +33,7 @@ export const customerSchema = z.object({
 
 // INVOICE ITEMS SCHEMA //
 export const invoiceItemSchema = z.object({
-  description: z.string().min(1, 'Description is required'),
+  description: z.string().trim().min(1, 'Description is required'),
   quantity: z.number().positive('Quantity must be greater than zero'),
   unitPrice: z.number().nonnegative('Unit price cannot be negative'),
 })
