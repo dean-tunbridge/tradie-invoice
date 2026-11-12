@@ -5,6 +5,11 @@
 
       <!-- Business details component -->
       <BusinessDetails v-model:business="invoice.business" />
+      <!-- invoice details -->
+      <InvoiceDetails
+        v-model:invoice-number="invoice.invoiceNumber"
+        v-model:invoice-date="invoice.invoiceDate"
+        v-model:due-date="invoice.dueDate" />
       <!-- Customer details -->
       <CustomerDetails v-model:customer="invoice.customer" />
       <!-- Invoice line items -->
@@ -40,6 +45,7 @@ import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
 import InvoiceTotals from './InvoiceTotals.vue'
+import InvoiceDetails from './InvoiceDetails.vue'
 
 const invoiceNumber = ref('')
 
