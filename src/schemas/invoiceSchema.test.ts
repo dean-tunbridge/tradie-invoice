@@ -41,3 +41,59 @@ const validInvoice = {
   items: [validItem],
   discountPercentage: 10,
 }
+
+// TEST BUSINESS INFORMATION //
+describe('Business schema', () => {
+  // valid business //
+  it('Accepts valid business information', () => {
+    const result = businessSchema.safeParse(validBusiness)
+    expect(result.success).toBe(true)
+  })
+
+  // business name //
+  it('Rejects empty business name', () => {
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      businessName: '',
+    })
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects whitespace-only business names', () => {
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      businessName: '   ',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  // email //
+  it('accepts an empty email address', () => {
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      email: '',
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  // gst //
+  it('requires a GST number when GST registered', () => {
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      gstNumber: '',
+    })
+    expect(result.success).toBe(false)
+  })
+  // Unregistered business //
+  it('allows an unregistered business without a GST number', () => {
+    const result = businessSchema.safeParse({
+      ...validBusiness,
+      gstRegistered: false,
+      gstNumber: '',
+    })
+
+    expect(result.success).toBe(true)
+  })
+})
