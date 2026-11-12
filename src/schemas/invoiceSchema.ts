@@ -1,15 +1,27 @@
 import { z } from 'zod'
 
 // BUSINESS OWNER SCHEMA //
-export const businessSchema = z.object({
-  businessName: z.string().min(1, 'Business name is required'),
-  address: z.string().min(1, 'Business address is required'),
-  email: z.email().optional(),
-  phone: z.string().optional(),
-  nzbn: z.string().optional(),
-  gstRegistered: z.boolean(),
-  gstNumber: z.string().optional(),
-})
+export const businessSchema = z
+  .object({
+    businessName: z.string().min(1, 'Business name is required'),
+    address: z.string().min(1, 'Business address is required'),
+    email: z.email().optional(),
+    phone: z.string().optional(),
+    nzbn: z.string().optional(),
+    gstRegistered: z.boolean(),
+    gstNumber: z.string().optional(),
+  })
+  // gst error handling //
+  .superRefine((business, ctx) => {
+    if (business.gstRegistered && !business.gstNumber?.trim()) {
+      ctx.addIssue({
+        code: 'custom',
+        // path indicates which field the error belongs to
+        path: ['gstNumber'],
+        message: 'GST number is required when GST registered',
+      })
+    }
+  })
 
 // CUSTOMER SCHEMA //
 export const customerSchema = z.object({
