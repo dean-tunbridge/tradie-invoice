@@ -17,6 +17,31 @@
             )
           " />
       </label>
+
+      <!-- invoice date -->
+      <label>
+        Invoice Date
+        <input
+          type="date"
+          :value="invoiceDate"
+          @input="
+            emit(
+              'update:invoiceDate',
+              ($event.target as HTMLInputElement).value,
+            )
+          " />
+      </label>
+
+      <!-- due date -->
+      <label>
+        Due Date
+        <input
+          type="date"
+          :value="dueDate"
+          @input="
+            emit('update:dueDate', ($event.target as HTMLInputElement).value)
+          " />
+      </label>
     </section>
   </div>
 </template>
@@ -37,4 +62,22 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<style scoped></style>
+<style scoped>
+.invoice-information {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.invoice-information label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.invoice-information input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+</style>
