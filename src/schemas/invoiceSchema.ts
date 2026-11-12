@@ -3,7 +3,7 @@ import { z } from 'zod'
 // BUSINESS OWNER SCHEMA //
 export const businessSchema = z
   .object({
-    businessName: z.string().min(1, 'Business name is required'),
+    businessName: z.string().trim().min(1, 'Business name is required'),
     address: z.string().min(1, 'Business address is required'),
     email: z.union([z.email(), z.literal('')]).optional(),
     phone: z.string().optional(),
