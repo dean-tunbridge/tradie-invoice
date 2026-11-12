@@ -10,7 +10,12 @@
       <!-- Invoice line items -->
       <InvoiceLineItems v-model:items="invoice.items" />
       <!-- Invoice totals -->
-
+      <InvoiceTotals
+        :subtotal-cents="invoiceTotals.subtotalCents"
+        :discount-cents="invoiceTotals.discountCents"
+        :taxable-amount-cents="invoiceTotals.taxableAmountCents"
+        :gst-cents="invoiceTotals.gstCents"
+        :total-cents="invoiceTotals.totalCents" />
       <!-- Invoice actions -->
     </form>
 
@@ -34,6 +39,7 @@ import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
+import InvoiceTotals from './InvoiceTotals.vue'
 
 const invoiceNumber = ref('')
 
