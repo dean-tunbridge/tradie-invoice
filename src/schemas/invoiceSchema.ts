@@ -50,7 +50,7 @@ export const invoiceSchema = z.object({
     .min(1, 'At least one invoice item is required'),
   discountPercentage: z
     .number()
-    .min(0, 'Discount must be positive integer')
+    .min(0, 'Discount must be positive amount')
     .max(100, 'Discount cannot be over 100%')
     .default(0),
 })
