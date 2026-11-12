@@ -42,7 +42,7 @@ export const invoiceItemSchema = z.object({
 export const invoiceSchema = z.object({
   business: businessSchema,
   customer: customerSchema,
-  invoiceNumber: z.string().min(1, 'Invoice number is required'),
+  invoiceNumber: z.string().trim().min(1, 'Invoice number is required'),
   invoiceDate: z.iso.date('Invoice date is required'),
   dueDate: z.iso.date('Due date is required'),
   items: z
