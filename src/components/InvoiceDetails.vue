@@ -3,6 +3,7 @@
     <section class="invoice-details">
       <h2>Invoice Details</h2>
 
+      <!-- invoice number -->
       <label>
         Invoice number
         <input
