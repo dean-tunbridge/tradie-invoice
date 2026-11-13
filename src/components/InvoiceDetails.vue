@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import type { Invoice } from '../types/invoice'
 
-const props = defineProps<{
+defineProps<{
   invoiceNumber: Invoice['invoiceNumber']
   invoiceDate: Invoice['invoiceDate']
   dueDate: Invoice['dueDate']
@@ -63,19 +63,19 @@ const emit = defineEmits<{
 </script>
 
 <style scoped>
-.invoice-information {
+.invoice-details {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.invoice-information label {
+.invoice-details label {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.invoice-information input {
+.invoice-details input {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 6px;
