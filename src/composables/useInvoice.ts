@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
-
 import type { Invoice, InvoiceItem } from '../types/invoice'
-
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
+import { invoiceSchema } from '../schemas/invoiceSchema'
+import { z } from 'zod'
 
 // INITIAL INVOICE STATE //
 const createInitialInvoice = (): Invoice => ({
@@ -37,7 +37,28 @@ export function useInvoice() {
   // reactive invoice state //
   const invoice = ref<Invoice>(createInitialInvoice())
 
-  // inoice totals //
+  // validate invoice //
+  function validateInvoice() {
+    const result = invoiceSchema.safeParse(invoice.value)
+
+    if (result.success) {
+      return {
+        success: true as const,
+        data: result.data,
+        error: {},
+      }
+    }
+
+    const error = z.treeifyError(result.error)
+
+    return {
+      success: false as const,
+      data: null,
+      error,
+    }
+  }
+
+  // invoice totals //
   const invoiceTotals = computed(() => {
     return calculateInvoiceAmounts(
       invoice.value.items,
@@ -73,5 +94,6 @@ export function useInvoice() {
     addItem,
     removeItem,
     resetInvoice,
+    validateInvoice,
   }
 }

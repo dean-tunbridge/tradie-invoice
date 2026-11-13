@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="invoice-form">
+    <form class="invoice-form" @submit.prevent="handleSubmit">
       <h1>Create Invoice</h1>
 
       <!-- Business details component -->
@@ -31,11 +31,13 @@
         :total-cents="invoiceTotals.totalCents" />
 
       <!-- Invoice actions -->
+      <button type="submit">Create Invoice</button>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
@@ -45,7 +47,27 @@ import InvoiceTotals from './InvoiceTotals.vue'
 import { useInvoice } from '../composables/useInvoice.ts'
 
 // useInvoice //
-const { invoice, invoiceTotals, resetInvoice } = useInvoice()
+const { invoice, invoiceTotals, resetInvoice, validateInvoice } = useInvoice()
+
+// validate errors //
+const validationErrors = ref({})
+
+// handle form submission //
+function handleSubmit() {
+  const result = validateInvoice()
+
+  if (!result.success) {
+    validationErrors.value = result.error
+
+    console.log('Validation errors:', result.error)
+
+    return
+  }
+
+  validationErrors.value = {}
+
+  console.log('Invoice is valid:', result.data)
+}
 </script>
 
 <style scoped></style>
