@@ -152,3 +152,296 @@ describe('Customer schema', () => {
     expect(result.success).toBe(false)
   })
 })
+
+// TEST INVOICE ITEM SCHEMA //
+describe('Invoice item schema', () => {
+  // valid item //
+  it('accepts valid invoice item information', () => {
+    const result = invoiceItemSchema.safeParse(validItem)
+
+    expect(result.success).toBe(true)
+  })
+
+  // description //
+  it('rejects an empty description', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      description: '',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects whitespace-only descriptions', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      description: '   ',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('trims whitespace from descriptions', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      description: '  Plumbing labour  ',
+    })
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(result.data.description).toBe('Plumbing labour')
+    }
+  })
+
+  // quantity //
+  it('rejects a quantity of zero', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      quantity: 0,
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects a negative quantity', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      quantity: -2,
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('accepts a decimal quantity', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      quantity: 1.5,
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  // unit price //
+  it('accepts a unit price of zero', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      unitPrice: 0,
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('rejects a negative unit price', () => {
+    const result = invoiceItemSchema.safeParse({
+      ...validItem,
+      unitPrice: -85,
+    })
+
+    expect(result.success).toBe(false)
+  })
+})
+
+// TEST INVOICE SCHEMA //
+describe('Invoice schema', () => {
+  // valid invoice //
+  it('accepts valid invoice information', () => {
+    const result = invoiceSchema.safeParse(validInvoice)
+
+    expect(result.success).toBe(true)
+  })
+
+  // business //
+  it('rejects an invoice with invalid business information', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      business: {
+        ...validBusiness,
+        businessName: '',
+      },
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  // customer //
+  it('rejects an invoice with invalid customer information', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      customer: {
+        ...validCustomer,
+        customerName: '',
+      },
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  // invoice number //
+  it('rejects an empty invoice number', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceNumber: '',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects whitespace-only invoice numbers', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceNumber: '   ',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  // invoice date //
+  it('rejects an invalid invoice date', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceDate: 'not-a-date',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects an invalid due date', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      dueDate: '2026-13-45',
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  // due date validation //
+  it('rejects a due date before the invoice date', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceDate: '2026-11-19',
+      dueDate: '2026-11-12',
+    })
+
+    expect(result.success).toBe(false)
+
+    if (!result.success) {
+      expect(
+        result.error.issues.some(
+          (issue) =>
+            issue.path.includes('dueDate') &&
+            issue.message === 'Due date cannot be before invoice date',
+        ),
+      ).toBe(true)
+    }
+  })
+
+  it('accepts a due date equal to the invoice date', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceDate: '2026-11-12',
+      dueDate: '2026-11-12',
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('accepts a due date after the invoice date', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      invoiceDate: '2026-11-12',
+      dueDate: '2026-12-12',
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  // invoice items //
+  it('rejects an invoice with no items', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      items: [],
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects an invoice containing an invalid item', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      items: [
+        {
+          ...validItem,
+          quantity: -1,
+        },
+      ],
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('accepts an invoice with multiple valid items', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      items: [
+        validItem,
+        {
+          description: 'Materials',
+          quantity: 3,
+          unitPrice: 25,
+        },
+      ],
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  // discount percentage //
+  it('accepts a discount percentage of zero', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      discountPercentage: 0,
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('accepts a discount percentage of 100', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      discountPercentage: 100,
+    })
+
+    expect(result.success).toBe(true)
+  })
+
+  it('rejects a negative discount percentage', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      discountPercentage: -1,
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('rejects a discount percentage over 100', () => {
+    const result = invoiceSchema.safeParse({
+      ...validInvoice,
+      discountPercentage: 101,
+    })
+
+    expect(result.success).toBe(false)
+  })
+
+  it('defaults discount percentage to zero when omitted', () => {
+    const { discountPercentage, ...invoiceWithoutDiscount } = validInvoice
+
+    const result = invoiceSchema.safeParse(invoiceWithoutDiscount)
+
+    expect(result.success).toBe(true)
+
+    if (result.success) {
+      expect(result.data.discountPercentage).toBe(0)
+    }
+  })
+})
