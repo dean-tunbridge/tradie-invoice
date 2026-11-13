@@ -41,6 +41,7 @@ import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
 import InvoiceDetails from './InvoiceDetails.vue'
 import InvoiceDiscount from './InvoiceDiscount.vue'
+import InvoiceTotals from './InvoiceTotals.vue'
 import { useInvoice } from '../composables/useInvoice.ts'
 
 // useInvoice //
