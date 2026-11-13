@@ -34,10 +34,10 @@ const createInitialInvoice = (): Invoice => ({
 
 // INVOICE COMPOSABLE //
 export function useInvoice() {
-  // REACTIVE INVOICE STATE //
+  // reactive invoice state //
   const invoice = ref<Invoice>(createInitialInvoice())
 
-  // COMPUTED INVOICE TOTALS //
+  // inoice totals //
   const invoiceTotals = computed(() => {
     return calculateInvoiceAmounts(
       invoice.value.items,
@@ -46,7 +46,7 @@ export function useInvoice() {
     )
   })
 
-  // ADD INVOICE ITEM //
+  // add invoice item //
   function addItem() {
     const newItem: InvoiceItem = {
       description: '',
@@ -57,17 +57,16 @@ export function useInvoice() {
     invoice.value.items.push(newItem)
   }
 
-  // REMOVE INVOICE ITEM //
+  // remove invoice item //
   function removeItem(index: number) {
     invoice.value.items.splice(index, 1)
   }
 
-  // RESET INVOICE //
+  // reset invoice //
   function resetInvoice() {
     invoice.value = createInitialInvoice()
   }
 
-  // RETURN STATE AND FUNCTIONS //
   return {
     invoice,
     invoiceTotals,
