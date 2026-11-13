@@ -109,7 +109,7 @@ function updateBusiness(field: keyof Business, value: string | boolean) {
     [field]: value,
   }
   // Ensure gst number is removed when field is unticked //
-  if (field === 'gstRegistered' && value === 'false') {
+  if (field === 'gstRegistered' && value === false) {
     updatedBusiness.gstNumber = ''
   }
 
