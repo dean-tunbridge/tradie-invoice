@@ -32,66 +32,19 @@
 
       <!-- Invoice actions -->
     </form>
-
-    <section>
-      <h2>Invoice Totals</h2>
-      <p>Subtotal: {{ invoiceTotals.subtotalCents }} cents</p>
-
-      <p>Discount: {{ invoiceTotals.discountCents }} cents</p>
-
-      <p>GST: {{ invoiceTotals.gstCents }} cents</p>
-
-      <p>Total: {{ invoiceTotals.totalCents }} cents</p>
-    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Invoice } from '../types/invoice'
-import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
-import InvoiceTotals from './InvoiceTotals.vue'
 import InvoiceDetails from './InvoiceDetails.vue'
 import InvoiceDiscount from './InvoiceDiscount.vue'
+import { useInvoice } from '../composables /useInvoice.ts'
 
-// Create initial state for all values //
-const invoice = ref<Invoice>({
-  business: {
-    businessName: '',
-    address: '',
-    email: '',
-    phone: '',
-    nzbn: '',
-    gstRegistered: false,
-    gstNumber: '',
-  },
-
-  customer: {
-    customerName: '',
-    address: '',
-    email: '',
-    phone: '',
-  },
-
-  invoiceNumber: '',
-  invoiceDate: '',
-  dueDate: '',
-
-  items: [],
-
-  discountPercentage: 0,
-})
-
-const invoiceTotals = computed(() => {
-  return calculateInvoiceAmounts(
-    invoice.value.items,
-    invoice.value.discountPercentage,
-    invoice.value.business.gstRegistered,
-  )
-})
+// useInvoice //
+const { invoice, invoiceTotals, resetInvoice } = useInvoice()
 </script>
 
 <style scoped></style>
