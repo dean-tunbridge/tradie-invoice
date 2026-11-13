@@ -33,7 +33,7 @@ export function calculateDiscount(
 }
 
 // CALCULATE TAX AFTER DISCOUNT //
-export function calculateTaxAfterDiscount(
+export function calculateTaxableAmount(
   subtotalCents: number,
   discountCents: number,
 ): number {
@@ -63,7 +63,7 @@ export function calculateInvoiceAmounts(
   // Calculate discount
   const discountCents = calculateDiscount(subtotalCents, discountPercentage)
   // Calculate taxable amount //
-  const taxableAmountCents = calculateTaxAfterDiscount(
+  const taxableAmountCents = calculateTaxableAmount(
     subtotalCents,
     discountCents,
   )
