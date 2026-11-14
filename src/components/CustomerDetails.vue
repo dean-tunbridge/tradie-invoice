@@ -2,6 +2,7 @@
   <div>
     <section class="customer-details">
       <h2>Customer Details</h2>
+
       <!-- customer name -->
       <label>
         Customer Name
@@ -14,6 +15,10 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.customerName?.errors?.length">
+          {{ props.errors.customerName.errors[0] }}
+        </p>
       </label>
 
       <!-- customer address -->
@@ -58,6 +63,20 @@ import type { Customer } from '../types/invoice'
 // Declare what values (properties) the parent component must provide
 const props = defineProps<{
   customer: Customer
+  errors?: {
+    customerName: {
+      errors: string[]
+    }
+    address?: {
+      errors: string[]
+    }
+    email?: {
+      errors: string[]
+    }
+    phone?: {
+      errors: string[]
+    }
+  }
 }>()
 
 // Declare which events the child component can send back to parent component
