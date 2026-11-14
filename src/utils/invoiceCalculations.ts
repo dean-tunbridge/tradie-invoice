@@ -32,7 +32,7 @@ export function calculateDiscount(
   return Math.round(subtotalCents * (discountPercentage / 100))
 }
 
-// CALCULATE TAX AFTER DISCOUNT //
+// CALCULATE TAXABLE AMOUNT //
 export function calculateTaxableAmount(
   subtotalCents: number,
   discountCents: number,

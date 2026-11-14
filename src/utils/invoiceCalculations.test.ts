@@ -6,7 +6,7 @@ import {
   calculateLineTotalCents,
   calculateTotalCents,
   calculateDiscount,
-  calculateTaxAfterDiscount,
+  calculateTaxableAmount,
   calculateGST,
   calculateInvoiceAmounts,
 } from './invoiceCalculations'
@@ -57,7 +57,7 @@ describe('Discount calculations', () => {
   })
   // TEST AMOUNT AFTER DISCOUNT
   it('calculates the taxable amount after discount', () => {
-    expect(calculateTaxAfterDiscount(73400, 7340)).toBe(66060)
+    expect(calculateTaxableAmount(73400, 7340)).toBe(66060)
   })
 })
 
