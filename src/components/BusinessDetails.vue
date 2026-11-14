@@ -15,6 +15,10 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.businessName?.errors?.length">
+          {{ props.errors.businessName.errors[0] }}
+        </p>
       </label>
 
       <!-- business address -->
