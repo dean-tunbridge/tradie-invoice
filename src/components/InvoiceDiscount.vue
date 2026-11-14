@@ -17,8 +17,8 @@
           )
         " />
       <!-- error handling -->
-      <p v-if="props.errors?.discountPercentage?.errors?.length">
-        {{ props.errors.discountPercentage.errors[0] }}
+      <p v-if="props.errors?.errors?.length">
+        {{ props.errors.errors[0] }}
       </p>
     </label>
   </section>
@@ -28,9 +28,7 @@
 const props = defineProps<{
   discountPercentage: number
   errors?: {
-    discountPercentage?: {
-      errors: string[]
-    }
+    errors: string[]
   }
 }>()
 
