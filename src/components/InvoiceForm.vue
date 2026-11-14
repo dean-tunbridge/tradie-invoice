@@ -54,7 +54,10 @@ import { useInvoice } from '../composables/useInvoice.ts'
 const { invoice, invoiceTotals, resetInvoice, validateInvoice } = useInvoice()
 
 // validate errors //
-const validationErrors = ref<ReturnType<typeof validateInvoice>['error']>({})
+const validationErrors = ref<ReturnType<typeof validateInvoice>['error']>({
+  errors: [],
+  properties: {},
+})
 
 // handle form submission //
 function handleSubmit() {
