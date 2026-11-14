@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import {z} from 'zod'
 
 import {
   businessSchema,
@@ -43,6 +44,7 @@ const validInvoice = {
 }
 
 // TEST BUSINESS SCHEMA //
+
 describe('Business schema', () => {
   // valid business //
   it('Accepts valid business information', () => {
@@ -99,6 +101,7 @@ describe('Business schema', () => {
 })
 
 // TEST CUSTOMER SCHEMA //
+
 describe('Customer schema', () => {
   // customer information //
   it('accepts valid customer information', () => {
@@ -154,6 +157,7 @@ describe('Customer schema', () => {
 })
 
 // TEST INVOICE ITEM SCHEMA //
+
 describe('Invoice item schema', () => {
   // valid item //
   it('accepts valid invoice item information', () => {
@@ -243,6 +247,7 @@ describe('Invoice item schema', () => {
 })
 
 // TEST INVOICE SCHEMA //
+
 describe('Invoice schema', () => {
   // valid invoice //
   it('accepts valid invoice information', () => {
@@ -444,4 +449,25 @@ describe('Invoice schema', () => {
       expect(result.data.discountPercentage).toBe(0)
     }
   })
+})
+
+// VALIDATION ERROR TESTS //
+
+// due date error //
+it('places due date error under dueDate', () => {
+  const result = invoiceSchema.safeParse({
+    ...validInvoice,
+    invoiceDate: '2026-11-19',
+    dueDate: '2026-06-16',
+  })
+
+  expect(result.success).toBe(false)
+
+   if (!result.success) {
+    const errorTree = z.treeifyError(result.error)
+
+    expect(
+      errorTree.properties?.dueDate?.errors,
+    ).toContain('Due date cannot be before invoice date')
+  }
 })
