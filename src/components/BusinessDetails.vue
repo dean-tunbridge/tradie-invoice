@@ -45,6 +45,10 @@
           @input="
             updateBusiness('email', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.email?.errors?.length">
+          {{ props.errors.email.errors[0] }}
+        </p>
       </label>
       <!-- phone number -->
       <label>
@@ -55,6 +59,10 @@
           @input="
             updateBusiness('phone', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.phone?.errors?.length">
+          {{ props.errors.phone.errors[0] }}
+        </p>
       </label>
 
       <!-- New Zealand business number -->
@@ -110,6 +118,12 @@ const props = defineProps<{
       errors: string[]
     }
     address?: {
+      errors: string[]
+    }
+    email?: {
+      errors: string[]
+    }
+    phone?: {
       errors: string[]
     }
   }
