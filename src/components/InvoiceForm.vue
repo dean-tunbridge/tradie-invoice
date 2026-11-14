@@ -22,7 +22,7 @@
       <!-- Invoice line items -->
       <InvoiceLineItems
         v-model:items="invoice.items"
-        :errors="validationErrors.properties?.customer?.properties" />
+        :errors="validationErrors.properties?.items" />
 
       <!-- discounts-->
       <InvoiceDiscount
