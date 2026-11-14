@@ -14,4 +14,6 @@ export type InvoiceItem = z.infer<typeof invoiceItemSchema>
 export type Invoice = z.infer<typeof invoiceSchema>
 
 // VALIDATE ERROR TYPES //
-export type InvoiceValidationErrors = ReturnType<typeof z.treeifyError>
+export type InvoiceValidationErrors = ReturnType<
+  typeof z.treeifyError<z.infer<typeof invoiceSchema>>
+>
