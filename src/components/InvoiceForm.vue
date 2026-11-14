@@ -89,6 +89,7 @@ function handleSubmit() {
   console.log('Invoice is valid:', result.data)
 }
 
+// automatically revalidate invoice after submission
 watch(
   invoice,
   () => {
