@@ -50,6 +50,7 @@
           {{ props.errors.email.errors[0] }}
         </p>
       </label>
+
       <!-- phone number -->
       <label>
         Phone
@@ -93,6 +94,7 @@
           " />
         GST registered
       </label>
+
       <!-- error handling -->
       <p v-if="props.errors?.gstRegistered?.errors?.length">
         {{ props.errors.gstRegistered.errors[0] }}
@@ -110,6 +112,7 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+
         <!-- error handling -->
         <p v-if="props.errors?.gstNumber?.errors?.length">
           {{ props.errors.gstNumber.errors[0] }}
