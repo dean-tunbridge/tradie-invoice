@@ -30,6 +30,10 @@
           @input="
             updateBusiness('address', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.address?.errors?.length">
+          {{ props.errors.address.errors[0] }}
+        </p>
       </label>
 
       <!-- email -->
