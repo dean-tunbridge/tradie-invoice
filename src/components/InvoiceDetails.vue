@@ -16,6 +16,10 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.invoiceNumber?.errors?.length">
+          {{ props.errors.invoiceNumber.errors[0] }}
+        </p>
       </label>
 
       <!-- invoice date -->
@@ -54,7 +58,7 @@ type invoicePropertiesErrors = NonNullable<
   InvoiceValidationErrors['properties']
 >
 
-defineProps<{
+const props = defineProps<{
   invoiceNumber: Invoice['invoiceNumber']
   invoiceDate: Invoice['invoiceDate']
   dueDate: Invoice['dueDate']
