@@ -20,7 +20,9 @@
         :errors="validationErrors.properties?.customer?.properties" />
 
       <!-- Invoice line items -->
-      <InvoiceLineItems v-model:items="invoice.items" />
+      <InvoiceLineItems
+        v-model:items="invoice.items"
+        :errors="validationErrors.properties?.customer?.properties" />
 
       <!-- discounts-->
       <InvoiceDiscount

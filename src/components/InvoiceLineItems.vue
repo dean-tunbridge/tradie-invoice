@@ -3,6 +3,10 @@
     <section class="line-items">
       <h2>Hours and Materials</h2>
 
+      <p v-if="props.errors?.errors?.length">
+        {{ props.errors.errors[0] }}
+      </p>
+
       <div v-for="(item, index) in items" :key="index" class="line-item">
         <h3>Item: {{ index + 1 }}</h3>
         <!-- description -->
