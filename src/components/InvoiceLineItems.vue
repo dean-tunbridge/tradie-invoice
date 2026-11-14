@@ -67,6 +67,18 @@ import type { InvoiceItem } from '../types/invoice'
 
 const props = defineProps<{
   items: InvoiceItem[]
+  errors?: {
+    description?: {
+      errors: string[]
+    }
+    quantity?: {
+      errors: string[]
+    }
+
+    unitPrice?: {
+      errors: string[]
+    }
+  }
 }>()
 
 const emit = defineEmits<{
