@@ -63,8 +63,8 @@
           <!-- error handling -->
           <p v-if="props.errors?.unitPrice?.errors?.length">
             {{ props.errors.unitPrice.errors[0] }}
-          </p></label
-        >
+          </p>
+        </label>
 
         <button type="button" @click="removeItem(index)">Remove item</button>
       </div>

@@ -1,21 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  subtotalCents: number
-  discountCents: number
-  taxableAmountCents: number
-  gstCents: number
-  totalCents: number
-}>()
-
-// Set currency to NZD using inbuilt JS API //
-function formatCurrency(cents: number): string {
-  return new Intl.NumberFormat('en-NZ', {
-    style: 'currency',
-    currency: 'NZD',
-  }).format(cents / 100)
-}
-</script>
-
 <template>
   <section class="invoice-totals">
     <h2>Invoice Summary</h2>
@@ -46,6 +28,24 @@ function formatCurrency(cents: number): string {
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  subtotalCents: number
+  discountCents: number
+  taxableAmountCents: number
+  gstCents: number
+  totalCents: number
+}>()
+
+// Set currency to NZD using inbuilt JS API //
+function formatCurrency(cents: number): string {
+  return new Intl.NumberFormat('en-NZ', {
+    style: 'currency',
+    currency: 'NZD',
+  }).format(cents / 100)
+}
+</script>
 
 <style scoped>
 .invoice-totals {

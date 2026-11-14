@@ -16,6 +16,10 @@
             Number(($event.target as HTMLInputElement).value),
           )
         " />
+      <!-- error handling -->
+      <p v-if="props.errors?.discountPercentage?.errors?.length">
+        {{ props.errors.discountPercentage.errors[0] }}
+      </p>
     </label>
   </section>
 </template>
@@ -23,6 +27,11 @@
 <script setup lang="ts">
 const props = defineProps<{
   discountPercentage: number
+  errors?: {
+    discountPercentage?: {
+      errors: string[]
+    }
+  }
 }>()
 
 const emit = defineEmits<{
