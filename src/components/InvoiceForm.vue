@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import BusinessDetails from './BusinessDetails.vue'
 import CustomerDetails from './CustomerDetails.vue'
 import InvoiceLineItems from './InvoiceLineItems.vue'
@@ -67,8 +67,13 @@ const validationErrors = ref<ReturnType<typeof validateInvoice>['error']>({
   properties: {},
 })
 
+// watch for submit //
+const hasSubmitted = ref(false)
+
 // handle form submission //
 function handleSubmit() {
+  hasSubmitted.value = true
+
   const result = validateInvoice()
 
   if (!result.success) {
@@ -83,6 +88,21 @@ function handleSubmit() {
 
   console.log('Invoice is valid:', result.data)
 }
+
+watch(
+  invoice,
+  () => {
+    if (hasSubmitted.value) {
+      const result = validateInvoice()
+      if (!result.success) {
+        validationErrors.value = result.error
+      } else {
+        validationErrors.value = { errors: [], properties: {} }
+      }
+    }
+  },
+  { deep: true },
+)
 </script>
 
 <style scoped></style>
