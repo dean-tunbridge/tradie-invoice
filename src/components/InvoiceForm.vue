@@ -24,7 +24,8 @@
 
       <!-- discounts-->
       <InvoiceDiscount
-        v-model:discount-percentage="invoice.discountPercentage" />
+        v-model:discount-percentage="invoice.discountPercentage"
+        :errors="validationErrors.properties?.discountPercentage" />
 
       <!-- Invoice totals -->
       <InvoiceTotals

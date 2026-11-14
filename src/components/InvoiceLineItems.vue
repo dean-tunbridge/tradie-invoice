@@ -19,7 +19,11 @@
               )
             " />
           <!-- error handling -->
-          <p v-if="props.errors?.description?.errors?.length">
+          <p
+            v-if="
+              props.errors?.items?.[index]?.properties?.description?.errors
+                ?.length
+            ">
             {{ props.errors.description.errors[0] }}
           </p></label
         >
