@@ -1,5 +1,9 @@
 import { ref, computed } from 'vue'
-import type { Invoice, InvoiceItem } from '../types/invoice'
+import type {
+  Invoice,
+  InvoiceItem,
+  InvoiceValidationErrors,
+} from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import { invoiceSchema } from '../schemas/invoiceSchema'
 import { z } from 'zod'
@@ -45,7 +49,10 @@ export function useInvoice() {
       return {
         success: true as const,
         data: result.data,
-        error: {},
+        error: {
+          errors: [],
+          properties: {},
+        } as InvoiceValidationErrors,
       }
     }
 
