@@ -68,7 +68,7 @@ function handleSubmit() {
     return
   }
 
-  validationErrors.value = {}
+  validationErrors.value = { errors: [], properties: {} }
 
   console.log('Invoice is valid:', result.data)
 }
