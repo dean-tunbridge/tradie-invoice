@@ -76,7 +76,7 @@ import type { Customer } from '../types/invoice'
 const props = defineProps<{
   customer: Customer
   errors?: {
-    customerName: {
+    customerName?: {
       errors: string[]
     }
     address?: {

@@ -4,7 +4,9 @@
       <h1>Create Invoice</h1>
 
       <!-- Business details component -->
-      <BusinessDetails v-model:business="invoice.business" />
+      <BusinessDetails
+        v-model:business="invoice.business"
+        :errors="validationErrors.properties?.business?.properties" />
 
       <!-- invoice details -->
       <InvoiceDetails
@@ -13,7 +15,9 @@
         v-model:due-date="invoice.dueDate" />
 
       <!-- Customer details -->
-      <CustomerDetails v-model:customer="invoice.customer" />
+      <CustomerDetails
+        v-model:customer="invoice.customer"
+        :errors="validationErrors.properties?.customer?.properties" />
 
       <!-- Invoice line items -->
       <InvoiceLineItems v-model:items="invoice.items" />
@@ -50,7 +54,7 @@ import { useInvoice } from '../composables/useInvoice.ts'
 const { invoice, invoiceTotals, resetInvoice, validateInvoice } = useInvoice()
 
 // validate errors //
-const validationErrors = ref({})
+const validationErrors = ref<ReturnType<typeof validateInvoice>['error']>({})
 
 // handle form submission //
 function handleSubmit() {
