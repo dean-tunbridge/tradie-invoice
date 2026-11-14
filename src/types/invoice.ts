@@ -17,3 +17,8 @@ export type Invoice = z.infer<typeof invoiceSchema>
 export type InvoiceValidationErrors = ReturnType<
   typeof z.treeifyError<z.infer<typeof invoiceSchema>>
 >
+
+// ERROR TYPE FOR LINE ITEMS //
+export type InvoiceItemValidationErrors = NonNullable<
+  NonNullable<InvoiceValidationErrors['properties']>['items']
+>

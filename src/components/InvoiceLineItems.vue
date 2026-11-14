@@ -24,9 +24,9 @@
               props.errors?.items?.[index]?.properties?.description?.errors
                 ?.length
             ">
-            {{ props.errors.description.errors[0] }}
-          </p></label
-        >
+            {{ props.errors.items[index].properties.description.errors[0] }}
+          </p>
+        </label>
 
         <!-- quantity -->
         <label>
@@ -44,10 +44,13 @@
               )
             " />
           <!-- error handling -->
-          <p v-if="props.errors?.quantity?.errors?.length">
-            {{ props.errors.quantity.errors[0] }}
-          </p></label
-        >
+          <p
+            v-if="
+              props.errors?.items?.[index]?.properties?.quantity?.errors?.length
+            ">
+            {{ props.errors.items[index].properties.quantity.errors[0] }}
+          </p>
+        </label>
 
         <!-- unit price -->
         <label>
@@ -65,8 +68,12 @@
               )
             " />
           <!-- error handling -->
-          <p v-if="props.errors?.unitPrice?.errors?.length">
-            {{ props.errors.unitPrice.errors[0] }}
+          <p
+            v-if="
+              props.errors?.items?.[index]?.properties?.unitPrice?.errors
+                ?.length
+            ">
+            {{ props.errors.items[index].properties.unitPrice.errors[0] }}
           </p>
         </label>
 
@@ -79,22 +86,11 @@
 </template>
 
 <script setup lang="ts">
-import type { InvoiceItem } from '../types/invoice'
+import type { InvoiceItem, InvoiceItemValidationErrors } from '../types/invoice'
 
 const props = defineProps<{
   items: InvoiceItem[]
-  errors?: {
-    description?: {
-      errors: string[]
-    }
-    quantity?: {
-      errors: string[]
-    }
-
-    unitPrice?: {
-      errors: string[]
-    }
-  }
+  errors?: InvoiceItemValidationErrors
 }>()
 
 const emit = defineEmits<{
