@@ -61,7 +61,7 @@
 import type { Invoice, InvoiceValidationErrors } from '../types/invoice'
 
 // reusable type alias //
-type invoicePropertiesErrors = NonNullable<
+type InvoicePropertiesErrors = NonNullable<
   InvoiceValidationErrors['properties']
 >
 
@@ -70,9 +70,9 @@ const props = defineProps<{
   invoiceDate: Invoice['invoiceDate']
   dueDate: Invoice['dueDate']
   errors?: {
-    invoiceNumber?: invoicePropertiesErrors['invoiceNumber']
-    invoiceDate?: invoicePropertiesErrors['invoiceDate']
-    dueDate?: invoicePropertiesErrors['dueDate']
+    invoiceNumber?: InvoicePropertiesErrors['invoiceNumber']
+    invoiceDate?: InvoicePropertiesErrors['invoiceDate']
+    dueDate?: InvoicePropertiesErrors['dueDate']
   }
 }>()
 
