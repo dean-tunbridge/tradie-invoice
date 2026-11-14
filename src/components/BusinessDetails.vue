@@ -91,12 +91,12 @@
               ($event.target as HTMLInputElement).checked,
             )
           " />
-        <!-- error handling -->
-        <p v-if="props.errors?.gstRegistered?.errors?.length">
-          {{ props.errors.gstRegistered.errors[0] }}
-        </p>
         GST registered
       </label>
+      <!-- error handling -->
+      <p v-if="props.errors?.gstRegistered?.errors?.length">
+        {{ props.errors.gstRegistered.errors[0] }}
+      </p>
 
       <!-- check gst registered -->
       <label v-if="business.gstRegistered">
