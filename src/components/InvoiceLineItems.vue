@@ -18,7 +18,11 @@
                 ($event.target as HTMLInputElement).value,
               )
             " />
-        </label>
+          <!-- error handling -->
+          <p v-if="props.errors?.description?.errors?.length">
+            {{ props.errors.description.errors[0] }}
+          </p></label
+        >
 
         <!-- quantity -->
         <label>
@@ -35,7 +39,11 @@
                 Number(($event.target as HTMLInputElement).value),
               )
             " />
-        </label>
+          <!-- error handling -->
+          <p v-if="props.errors?.quantity?.errors?.length">
+            {{ props.errors.quantity.errors[0] }}
+          </p></label
+        >
 
         <!-- unit price -->
         <label>
@@ -52,7 +60,11 @@
                 Number(($event.target as HTMLInputElement).value),
               )
             " />
-        </label>
+          <!-- error handling -->
+          <p v-if="props.errors?.unitPrice?.errors?.length">
+            {{ props.errors.unitPrice.errors[0] }}
+          </p></label
+        >
 
         <button type="button" @click="removeItem(index)">Remove item</button>
       </div>
