@@ -74,6 +74,10 @@
           @input="
             updateBusiness('nzbn', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.nzbn?.errors?.length">
+          {{ props.errors.nzbn.errors[0] }}
+        </p>
       </label>
 
       <!-- gst  -->
@@ -87,6 +91,10 @@
               ($event.target as HTMLInputElement).checked,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.gstRegistered?.errors?.length">
+          {{ props.errors.gstRegistered.errors[0] }}
+        </p>
         GST registered
       </label>
 
@@ -102,6 +110,10 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.gstNumber?.errors?.length">
+          {{ props.errors.gstNumber.errors[0] }}
+        </p>
       </label>
     </section>
   </div>
@@ -124,6 +136,15 @@ const props = defineProps<{
       errors: string[]
     }
     phone?: {
+      errors: string[]
+    }
+    nzbn?: {
+      errors: string[]
+    }
+    gstRegistered?: {
+      errors: string[]
+    }
+    gstNumber?: {
       errors: string[]
     }
   }
