@@ -59,7 +59,7 @@ function handleSubmit() {
   if (!result.success) {
     validationErrors.value = result.error
 
-    console.log('Validation errors:', result.error)
+    console.log('Validation errors:', JSON.stringify(result.error, null, 2))
 
     return
   }
