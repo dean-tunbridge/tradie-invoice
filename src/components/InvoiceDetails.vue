@@ -47,12 +47,23 @@
 </template>
 
 <script setup lang="ts">
-import type { Invoice } from '../types/invoice'
+import type { Invoice, InvoiceValidationErrors } from '../types/invoice'
 
 defineProps<{
   invoiceNumber: Invoice['invoiceNumber']
   invoiceDate: Invoice['invoiceDate']
   dueDate: Invoice['dueDate']
+  errors?: {
+    invoiceNumber?: {
+      errors: string[]
+    }
+    invoiceDate?: {
+      errors: string[]
+    }
+    dueDate?: {
+      errors: string[]
+    }
+  }
 }>()
 
 const emit = defineEmits<{
