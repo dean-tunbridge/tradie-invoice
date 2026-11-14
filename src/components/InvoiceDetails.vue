@@ -34,6 +34,10 @@
               ($event.target as HTMLInputElement).value,
             )
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.invoiceDate?.errors?.length">
+          {{ props.errors.invoiceDate.errors[0] }}
+        </p>
       </label>
 
       <!-- due date -->
@@ -45,6 +49,9 @@
           @input="
             emit('update:dueDate', ($event.target as HTMLInputElement).value)
           " />
+        <p v-if="props.errors?.dueDate?.errors?.length">
+          {{ props.errors.dueDate.errors[0] }}
+        </p>
       </label>
     </section>
   </div>
