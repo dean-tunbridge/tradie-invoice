@@ -30,6 +30,10 @@
           @input="
             updateCustomer('address', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.address?.errors?.length">
+          {{ props.errors.address.errors[0] }}
+        </p>
       </label>
 
       <!-- customer email -->
@@ -41,6 +45,10 @@
           @input="
             updateCustomer('email', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.email?.errors?.length">
+          {{ props.errors.email.errors[0] }}
+        </p>
       </label>
 
       <!-- customer phone number -->
@@ -52,6 +60,10 @@
           @input="
             updateCustomer('phone', ($event.target as HTMLInputElement).value)
           " />
+        <!-- error handling -->
+        <p v-if="props.errors?.phone?.errors?.length">
+          {{ props.errors.phone.errors[0] }}
+        </p>
       </label>
     </section>
   </div>
