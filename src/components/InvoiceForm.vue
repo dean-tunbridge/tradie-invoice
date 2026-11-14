@@ -12,7 +12,12 @@
       <InvoiceDetails
         v-model:invoice-number="invoice.invoiceNumber"
         v-model:invoice-date="invoice.invoiceDate"
-        v-model:due-date="invoice.dueDate" />
+        v-model:due-date="invoice.dueDate"
+        :errors="{
+          invoiceNumber: validationErrors.properties?.invoiceNumber,
+          invoiceDate: validationErrors.properties?.invoiceDate,
+          dueDate: validationErrors.properties?.dueDate,
+        }" />
 
       <!-- Customer details -->
       <CustomerDetails
