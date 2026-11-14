@@ -97,6 +97,14 @@ import type { Business } from '../types/invoice'
 // Declare what values (properties) the parent component must provide
 const props = defineProps<{
   business: Business
+  errors?: {
+    businessName?: {
+      errors: string[]
+    }
+    address?: {
+      errors: string[]
+    }
+  }
 }>()
 // Declare which events the child component can send back to parent component
 const emit = defineEmits<{
