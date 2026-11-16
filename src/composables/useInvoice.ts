@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
-import type {
-  Invoice,
-  InvoiceItem,
-  InvoiceValidationErrors,
+import {
+  InvoiceFormData,
+  type Invoice,
+  type InvoiceItem,
+  type InvoiceValidationErrors,
 } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import { invoiceSchema } from '../schemas/invoiceSchema'
@@ -38,6 +39,9 @@ const createInitialInvoice = (): Invoice => ({
 
 // INVOICE COMPOSABLE //
 export function useInvoice() {
+  // editable invoice state //
+  const formData = ref<InvoiceFormData>(createInitialInvoice())
+
   // reactive invoice state //
   const invoice = ref<Invoice>(createInitialInvoice())
 
