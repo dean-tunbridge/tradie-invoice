@@ -22,3 +22,6 @@ export type InvoiceValidationErrors = ReturnType<
 export type InvoiceItemValidationErrors = NonNullable<
   NonNullable<InvoiceValidationErrors['properties']>['items']
 >
+
+// PARTIAL INVOICE FOR EDITING //
+export type InvoiceFormData = Partial<Invoice>
