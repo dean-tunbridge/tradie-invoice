@@ -10,8 +10,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@primeuix/themes": "^3.1.0",
-    "primevue": "^5.0.4",
+    "@primeuix/themes": "2.0.3",
+    "primevue": "4.5.5",
     "vue": "^3.5.44",
     "zod": "^4.6.7"
   },
