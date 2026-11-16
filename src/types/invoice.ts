@@ -11,6 +11,9 @@ import {
 export type Business = z.infer<typeof businessSchema>
 export type Customer = z.infer<typeof customerSchema>
 export type InvoiceItem = z.infer<typeof invoiceItemSchema>
+
+// EDITABLE AND VALIDATED INVOICE TYPES//
+export type InvoiceFormData = Partial<Invoice>
 export type Invoice = z.infer<typeof invoiceSchema>
 
 // VALIDATE ERROR TYPES //
@@ -22,6 +25,3 @@ export type InvoiceValidationErrors = ReturnType<
 export type InvoiceItemValidationErrors = NonNullable<
   NonNullable<InvoiceValidationErrors['properties']>['items']
 >
-
-// PARTIAL INVOICE FOR EDITING //
-export type InvoiceFormData = Partial<Invoice>
