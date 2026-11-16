@@ -1,3 +1,13 @@
+@layer theme, base, primevue;
+
+html {
+  font-size: 112.5%;
+}
+
+:root {
+  --touch-target: 3.5rem;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
