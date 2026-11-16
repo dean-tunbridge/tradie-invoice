@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue'
-import {
+import type {
   InvoiceFormData,
-  type Invoice,
-  type InvoiceItem,
-  type InvoiceValidationErrors,
+  Invoice,
+  InvoiceItem,
+  InvoiceValidationErrors,
 } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import { invoiceSchema } from '../schemas/invoiceSchema'
