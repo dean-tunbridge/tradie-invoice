@@ -1,13 +1,12 @@
 import { ref, computed } from 'vue'
 import type {
-  InvoiceFormData,
   Invoice,
   InvoiceItem,
   InvoiceValidationErrors,
 } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import { invoiceSchema } from '../schemas/invoiceSchema'
-import { validate, z } from 'zod'
+import { z } from 'zod'
 
 // INITIAL INVOICE STATE //
 const createInitialInvoice = (): Invoice => ({
@@ -39,9 +38,6 @@ const createInitialInvoice = (): Invoice => ({
 
 // INVOICE COMPOSABLE //
 export function useInvoice() {
-  // editable invoice state //
-  const formData = ref<InvoiceFormData>(createInitialInvoice())
-
   // reactive invoice state //
   const invoice = ref<Invoice>(createInitialInvoice())
 
@@ -96,10 +92,7 @@ export function useInvoice() {
 
   // reset invoice //
   function resetInvoice() {
-    formData.value = createInitialInvoice()
-
-    validateInvoice = null
-    validationErrors = null
+    invoice.value = createInitialInvoice()
   }
 
   return {
