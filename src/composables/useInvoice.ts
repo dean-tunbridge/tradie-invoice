@@ -7,7 +7,7 @@ import type {
 } from '../types/invoice'
 import { calculateInvoiceAmounts } from '../utils/invoiceCalculations'
 import { invoiceSchema } from '../schemas/invoiceSchema'
-import { z } from 'zod'
+import { validate, z } from 'zod'
 
 // INITIAL INVOICE STATE //
 const createInitialInvoice = (): Invoice => ({
@@ -96,7 +96,10 @@ export function useInvoice() {
 
   // reset invoice //
   function resetInvoice() {
-    invoice.value = createInitialInvoice()
+    formData.value = createInitialInvoice()
+
+    validateInvoice = null
+    validationErrors = null
   }
 
   return {
