@@ -43,7 +43,13 @@
         :total-cents="invoiceTotals.totalCents" />
 
       <!-- Invoice actions -->
-      <button type="submit">Create Invoice</button>
+
+      <Button
+        type="submit"
+        label="Create Invoice"
+        size="large"
+        fluid
+        class="submit-button" />
     </form>
   </div>
 </template>
@@ -57,6 +63,8 @@ import InvoiceDetails from './InvoiceDetails.vue'
 import InvoiceDiscount from './InvoiceDiscount.vue'
 import InvoiceTotals from './InvoiceTotals.vue'
 import { useInvoice } from '../composables/useInvoice.ts'
+
+import Button from 'primevue/button'
 
 // useInvoice //
 const { invoice, invoiceTotals, resetInvoice, validateInvoice } = useInvoice()
@@ -106,4 +114,19 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style scoped>
+.invoice-form {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.submit-button {
+  min-height: var(--touch-target);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+</style>
