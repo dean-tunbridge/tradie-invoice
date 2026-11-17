@@ -3,16 +3,12 @@ import './style.css'
 import App from './App.vue'
 
 import PrimeVue from 'primevue/config'
-import { TradesPreset } from './theme'
+import Aura from '@primeuix/themes/aura'
 
 createApp(App)
   .use(PrimeVue, {
     theme: {
-      preset: TradesPreset,
-      options: {
-        darkModeSelector: 'none',
-        cssLayer: { name: 'primevue', order: 'theme, base, primevue' },
-      },
+      preset: Aura,
     },
   })
   .mount('#app')
