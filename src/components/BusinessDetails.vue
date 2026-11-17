@@ -125,10 +125,6 @@
 <script setup lang="ts">
 import type { Business } from '../types/invoice'
 
-import InputText from 'primevue/inputtext'
-import Checkbox from 'primevue/checkbox'
-import Message from 'primevue/message'
-
 // declare which values (properties) the parent component must provide
 const props = defineProps<{
   business: Business
