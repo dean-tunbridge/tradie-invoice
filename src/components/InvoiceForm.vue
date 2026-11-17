@@ -118,7 +118,7 @@ watch(
 .invoice-form {
   max-width: 40rem;
   margin: 0 auto;
-  padding: 1rem 1rem 7rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
