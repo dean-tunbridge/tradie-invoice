@@ -44,12 +44,7 @@
 
       <!-- Invoice actions -->
 
-      <Button
-        type="submit"
-        label="Create Invoice"
-        size="large"
-        fluid
-        class="submit-button" />
+      <button type="submit">Create Invoice</button>
     </form>
   </div>
 </template>
