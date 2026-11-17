@@ -125,7 +125,11 @@
 <script setup lang="ts">
 import type { Business } from '../types/invoice'
 
-// Declare what values (properties) the parent component must provide
+import InputText from 'primevue/inputtext'
+import Checkbox from 'primevue/checkbox'
+import Message from 'primevue/message'
+
+// declare which values (properties) the parent component must provide
 const props = defineProps<{
   business: Business
   errors?: {
@@ -152,7 +156,7 @@ const props = defineProps<{
     }
   }
 }>()
-// Declare which events the child component can send back to parent component
+// declare which events the child component can send back to parent component
 const emit = defineEmits<{
   'update:business': [business: Business]
 }>()
