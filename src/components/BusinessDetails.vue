@@ -152,7 +152,7 @@ const props = defineProps<{
     }
   }
 }>()
-// declare which events the child component can send back to parent component
+// Declare which events the child component can send back to parent component
 const emit = defineEmits<{
   'update:business': [business: Business]
 }>()

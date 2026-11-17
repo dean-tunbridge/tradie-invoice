@@ -64,8 +64,6 @@ import InvoiceDiscount from './InvoiceDiscount.vue'
 import InvoiceTotals from './InvoiceTotals.vue'
 import { useInvoice } from '../composables/useInvoice.ts'
 
-import Button from 'primevue/button'
-
 // useInvoice //
 const { invoice, invoiceTotals, resetInvoice, validateInvoice } = useInvoice()
 
