@@ -145,11 +145,21 @@ function removeItem(index: number) {
 <style scoped>
 .line-item {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
   padding: 1rem;
   background: var(--bg);
   border: 1px solid var(--border-card);
   border-radius: 10px;
+}
+
+.line-item h3 {
+  margin: 0;
+}
+
+.line-item button {
+  color: var(--error);
+  background: transparent;
+  border: 2px solid var(--error);
 }
 </style>
