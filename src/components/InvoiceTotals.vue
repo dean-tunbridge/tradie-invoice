@@ -48,15 +48,6 @@ function formatCurrency(cents: number): string {
 </script>
 
 <style scoped>
-.invoice-totals {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
 .total-row {
   display: flex;
   justify-content: space-between;
@@ -65,7 +56,7 @@ function formatCurrency(cents: number): string {
 
 .grand-total {
   padding-top: 1rem;
-  border-top: 1px solid #ddd;
-  font-size: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 1.5rem;
 }
 </style>
