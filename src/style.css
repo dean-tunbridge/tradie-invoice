@@ -101,6 +101,11 @@ section p {
   color: var(--error);
 }
 
+/* Red border for form errors */
+label:has(p) input:not([type='checkbox']) {
+  border-color: var(--error);
+}
+
 @media (min-width: 48rem) {
   section {
     padding: 1.5rem;

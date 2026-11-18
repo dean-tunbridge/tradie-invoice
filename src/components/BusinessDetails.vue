@@ -172,7 +172,7 @@ function updateBusiness(field: keyof Business, value: string | boolean) {
 </script>
 
 <style scoped>
-.business-details {
+/* .business-details {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -188,5 +188,5 @@ function updateBusiness(field: keyof Business, value: string | boolean) {
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-}
+} */
 </style>

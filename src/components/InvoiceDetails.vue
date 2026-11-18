@@ -84,7 +84,7 @@ const emit = defineEmits<{
 </script>
 
 <style scoped>
-.invoice-details {
+/* .invoice-details {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -100,5 +100,5 @@ const emit = defineEmits<{
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-}
+} */
 </style>
