@@ -142,4 +142,14 @@ function removeItem(index: number) {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.line-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+}
+</style>
