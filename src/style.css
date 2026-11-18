@@ -84,3 +84,25 @@ section {
   border: 1px solid var(--border-card);
   border-radius: 10px;
 }
+
+section h2 {
+  margin: 0;
+}
+
+section label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+section p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--error);
+}
+
+@media (min-width: 48rem) {
+  section {
+    padding: 1.5rem;
+  }
+}
