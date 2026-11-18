@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="invoice-form" @submit.prevent="handleSubmit">
+    <form class="invoice-form" novalidate @submit.prevent="handleSubmit">
       <h1>Create Invoice</h1>
 
       <!-- Business details component -->
