@@ -54,7 +54,7 @@ select {
 input[type='checkbox'] {
   width: 1.75rem;
   height: 1.75rem;
-  accent-color: var(--accent);
+  accent-color: var(--button);
 }
 
 button {
@@ -71,7 +71,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--button);
   outline-offset: 2px;
 }
 
