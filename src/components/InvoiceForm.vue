@@ -44,7 +44,7 @@
 
       <!-- Invoice actions -->
 
-      <button type="submit">Create Invoice</button>
+      <button type="submit" class="submit-button">Create Invoice</button>
     </form>
   </div>
 </template>
@@ -111,7 +111,7 @@ watch(
 .invoice-form {
   max-width: 40rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
