@@ -171,22 +171,4 @@ function updateBusiness(field: keyof Business, value: string | boolean) {
 }
 </script>
 
-<style scoped>
-/* .business-details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.business-details label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.business-details input {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-} */
-</style>
+<style scoped></style>
