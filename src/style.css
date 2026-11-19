@@ -12,12 +12,11 @@ html {
   --accent: #f28c28;
   --button: #237a3b;
   --error: #991b1b;
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: var(--sans);
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.45;
   color: var(--text);
   background: var(--bg);
